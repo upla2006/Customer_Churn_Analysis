@@ -388,21 +388,11 @@ o   Save the file as Prediction_Data
 
 Create Churn Prediction Model – Random Forest
 
-Now we will work with an application called Jupyter Notebook and we will coding our ML model in Python. Easiest way to install both them is to install the ANACONDA Software Package. You can follow the below link to do so:
-
-https://docs.anaconda.com/anaconda/install
-
- 
-
 Installing Libraries
 
 Open the Anaconda Command Prompt and run below code:
 
 pip install pandas numpy matplotlib seaborn scikit-learn joblib
-
- 
-
-Open Jupyter Notebook, create a new notebook and write below code:
 
 Importing Libraries & Data Load
 
