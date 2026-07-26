@@ -25,28 +25,12 @@ Metrics Required
 
 # STEP 1 – ETL Process in SQL Server
 
-So the first step in churn analysis is to load the data from our source file. For this purpose we will be using Microsoft SQL server because it is a widely used solution across the industry and also because a full-fledged Database System is better at handling recurring data loads and maintaining data integrity compared to an excel file
-
-
-Creating Database
-
-After installation, you will land on the following screen. Do remember to copy paste the server name somewhere because we will need this at a later stage. Also enable the checkbox which says “Trust Server Certificate” and then click on Connect
-
-Once connected, click on NEW QUERY button at the top ribbon and then write below query. This will create a new Database named db_Churn
 
 CREATE DATABASE db_Churn
 
- 
-
 Import csv into SQL server staging table – Import Wizard
 
-Right click on the newly created database in the explorer window and then go to
-
-Task >> Import >> Flat file >> Browse CSV file
-
-Remember to add customerId as primary key and allow nulls for all remaining columns. This is done to avoid any errors while data load. Also make sure to change the datatype where it say Bit to Varchar(50). We are doing this because while using import wizard I faced issues with the BIT data type, however Varchar(50) works fine.
-
-Data Exploration – Check Distinct Values
+# Data Exploration – Check Distinct Values
 
 SELECT Gender, Count(Gender) as TotalCount,
 Count(Gender)  1.0 / (Select Count() from stg_Churn)  as Percentage
@@ -79,7 +63,7 @@ Order by Percentage desc
 
  
 
-Data Exploration – Check Nulls
+#Data Exploration – Check Nulls
 
 SELECT 
     SUM(CASE WHEN Customer_ID IS NULL THEN 1 ELSE 0 END) AS Customer_ID_Null_Count,
@@ -152,7 +136,7 @@ FROM stg_Churn;
 
  
 
-Remove null and insert the new data into Prod table
+#Remove null and insert the new data into Prod table
 
 SELECT 
     Customer_ID,
@@ -227,7 +211,7 @@ FROM [db_Churn].[dbo].[stg_Churn];
 
    
 
- Create View for Power BI
+# Create View for Power BI
 
 Create View vw_ChurnData as
     select * from prod_Churn where Customer_Status In ('Churned', 'Stayed')
@@ -296,9 +280,7 @@ Churn Rate = [Total Churn] / [Total Customers]
  
 
  
-# STEP 4 – Power BI Visualization
-
- 
+# STEP 4 – Power BI Visualization 
 
 Summary Page
 
@@ -353,29 +335,11 @@ Churn Reason Page (Tooltip)
  
 
  
-
- 
-
- 
 # STEP 5 – Predict Customer Churn
 
 For predicting customer churn, we will be using a widely used Machine Learning algorithm called RANDOM FOREST.
 
 What is Random Forest?A random forest is a machine learning algorithm that consists of multiple decision trees. Each decision tree is trained on a random subset of the data and features. The final prediction is made by averaging the predictions (in regression tasks) or taking the majority vote (in classification tasks) from all the trees in the forest. This ensemble approach improves the accuracy and robustness of the model by reducing the risk of overfitting compared to using a single decision tree.
-
- 
-
-Data Preparation for ML model
-
-Let us first import views in an Excel file.
-
-o   Go to Data >> Get Data >> SQL Server Database
-
-o   Enter the Server Name & Database name to connect to SQL Server
-
-o   Import both vw_ChurnData & vw_JoinData
-
-o   Save the file as Prediction_Data
 
  
 
@@ -666,5 +630,3 @@ c.       Tenure Group – Churn Count
 a.       State – Churn Count
 
  
-
-That’s it, now you have a comprehensive Power BI dashboard with and Executive Summary to analyze historical data and also a Churn Prediction page to predict future churners. Hope I was able to provide value with this content. Keep following for more content. Cheers!
