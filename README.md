@@ -25,15 +25,8 @@ Metrics Required
 
 # STEP 1 – ETL Process in SQL Server
 
-So the first step in churn analysis is to load the data from our source file. For this purpose we will be using Microsoft SQL server because it is a widely used solution across the industry and also because a full-fledged Database System is better at handling recurring data loads and maintaining data integrity compared to an excel file.
+So the first step in churn analysis is to load the data from our source file. For this purpose we will be using Microsoft SQL server because it is a widely used solution across the industry and also because a full-fledged Database System is better at handling recurring data loads and maintaining data integrity compared to an excel file
 
-Download SSMS
-
-In order for us to run our sql queries Microsoft provides us with GUI interface which is known as SQL Server Management Studio. You can download the latest version from the link provided below.
-
-https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16
-
- 
 
 Creating Database
 
